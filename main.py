@@ -10,7 +10,7 @@ if __name__ == '__main__':
         # configure our display
         conf.init_display()
         back_fround_color.background_color()
-        station_number.st_number(9)
+        station_number.st_number(8)
         conf.show_image()
     except Exception as e:
         logging.error(f"Error : {e}")

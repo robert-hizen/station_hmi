@@ -7,8 +7,9 @@ class StationNumber:
     def __init__(self , conf : config.Configuration):
         self.config = conf
     def st_number(self , num):
+        # i didnt use loops for time complexity
         if not (1<= num <= 9):
-            logging.warning("Invalid station number")
+            logging.error("Invalid station number")
         try:
             # canvas = Image.new("RGB", (240, 240), "#2C3E50")  # یا "#000000" برای مشکی
             img = Image.open(f'template/picture/{num}-solid.jpg').convert("RGB")
