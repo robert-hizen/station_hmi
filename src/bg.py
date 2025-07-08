@@ -1,5 +1,4 @@
 import sys
-from PIL import Image , ImageDraw , ImageFont
 sys.path.append('../')
 from config import config
 class Bg:
