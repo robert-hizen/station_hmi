@@ -26,6 +26,8 @@ class Configuration:
         self.font1 = ImageFont.truetype(font_dir + 'Font00.ttf' , size=12)
         self.font2 = ImageFont.truetype(font_dir + 'Font01.ttf' , size=12)
         self.font3 = ImageFont.truetype(font_dir + 'Font02.ttf' , size=12)
+        self.bold_font = ImageFont.truetype(font_dir + 'bold.otf' ,  size= 11)
+        self.big_bold_font = ImageFont.truetype(font_dir + 'bold.otf' , size=14)
     def init_display(self):
         self.disp.Init()
         self.disp.clear()
