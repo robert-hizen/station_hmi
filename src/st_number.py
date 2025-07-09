@@ -12,7 +12,6 @@ class StationNumber:
             logging.error("Invalid station number")
             self.config.module_die()
         try:
-            # canvas = Image.new("RGB", (240, 240), "#2C3E50")
             img = Image.open(f'template/picture/{num}-solid.jpg').convert("RGB")
             power_image = Image.open(f'template/picture/Powers/power-{state}.jpg')
             self.config.image.paste(img , (90,8))
@@ -20,7 +19,5 @@ class StationNumber:
         except Exception as e:
             logging.error(f"Error loading image: {e}")
             self.config.module_die()
-        # if state != ('on') or state != 'off':
-        #         raise ValueError("PLease enter a valid state.")
         
           
