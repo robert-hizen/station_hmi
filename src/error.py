@@ -9,7 +9,7 @@ class Error:
         self.error_font  = ImageFont.truetype('/home/user-null/Documents/station_lcd/Font/bold.otf' , size=22)
     def error_code(self):
         self.config.draw.text(
-            (67,35),
+            (62,35),
             text='Error: ',
             fill='#f5f6fa',
             font=self.error_font
