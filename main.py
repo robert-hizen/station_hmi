@@ -4,6 +4,7 @@ from src import st_number
 from src import status
 from src import error
 from src import pw_supply 
+from src import feed 
 import logging
 if __name__ == '__main__':
     conf = config.Configuration()
@@ -12,6 +13,8 @@ if __name__ == '__main__':
     status_value = status.Status(conf)
     error_state = error.Error('1234',conf)
     power_supply_instance = pw_supply.PowerSupply(5 , conf)
+    feed_instance = feed.Feed('on',conf)
+
     try:
         # configure our display
         conf.init_display()
@@ -22,6 +25,7 @@ if __name__ == '__main__':
         status_value.circle()
         status_value.Status_logo_message('warning','warning' , 'Dosing Error!')
         power_supply_instance.power_supply()
+        feed_instance.feed_state()
         conf.show_image()
     except Exception as e:
         logging.error(f"Error : {e}")

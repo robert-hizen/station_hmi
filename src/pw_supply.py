@@ -18,6 +18,6 @@ class PowerSupply:
             font= self.voltage_font,
         )
         seprator_line = Image.open('template/picture/vertical_line/line.jpg') 
-        self.config.image.paste(seprator_line , (112,63))
+        self.config.image.paste(seprator_line , (113,63))
 
             
