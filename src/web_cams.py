@@ -23,9 +23,9 @@ class Cams:
 
     def update(self):
         now = time.time()
-        print(f"[CAMS] status: {self.connection}, blink_state: {self.blink_state}")
+        # print(f"[CAMS] status: {self.connection}, blink_state: {self.blink_state}")
         if self.connection == 'off':
-            if now - self.last_blink_time > 0.5:
+            if now - self.last_blink_time > 0.3:
                 self.blink_state = not self.blink_state
                 self.last_blink_time = now
 

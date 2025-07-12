@@ -1,7 +1,7 @@
 import time
 import threading
 from config import config
-from src import error, bg , st_number , status , pw_supply , feed , web_cams , network , arduino
+from src import copy_right , error, bg , st_number , status , pw_supply , feed , web_cams , network , arduino
 import logging
 from PIL import Image
 def render_loop(conf , web_cam , network , arduino , static_background):
@@ -25,9 +25,10 @@ if __name__ == '__main__':
     error_state = error.Error('1234', conf)
     power_supply_instance = pw_supply.PowerSupply(5 , conf)
     feed_instance = feed.Feed('on', conf)
-    web_cam = web_cams.Cams('on', conf)
-    network_con = network.Network(conf , 'best')
-    arduino_ctrl = arduino.Arduino(conf , 'on')
+    web_cam = web_cams.Cams('off', conf)
+    network_con = network.Network(conf)
+    arduino_ctrl = arduino.Arduino(conf)
+    pooyesh_machine = copy_right.CopyRight(conf)
     try:
         conf.init_display()
 
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         status_value.Status_logo_message('warning', 'warning', 'Dosing Error!')
         power_supply_instance.power_supply()
         feed_instance.feed_state()
-
+        pooyesh_machine.pooyesh_machine_logo()
         base_static = conf.image.copy()  # کپی از تصویر ثابت ساخته شده
 
         render_thread = threading.Thread(target=render_loop, args=(conf, web_cam, network_con, arduino_ctrl , base_static), daemon=True)

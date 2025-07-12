@@ -22,7 +22,7 @@ class Arduino:
     def update(self):
         now = time.time()
         if self.status is None:
-            if now - self.last_blink_time > 0.5:
+            if now - self.last_blink_time > 0.3:
                 self.blink_state = not self.blink_state
                 self.last_blink_time = now
             self.current_image = self.img_on if self.blink_state else self.clear_img
