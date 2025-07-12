@@ -1,32 +1,38 @@
 import sys
 import time
+import threading
 import logging
 from PIL import Image
 sys.path.append('..')
 from config import config
-class  Cams:
-    def __init__(self , con , conf : config.Configuration):
+
+class Cams:
+    X_CORDINATE = 40
+    Y_CORDINATE = 165
+
+    def __init__(self, connection_status, conf: config.Configuration):
         self.config = conf
-        self.dir  = '/home/user-null/Documents/station_lcd/template/picture'
-        self.connection = con
-    def web_cams(self):
-        try:
-            img = Image.open(self.dir + '/Icons/web_cams.jpg')
-            try:
-                if self.connection == 'connect':
-                    self.config.image.paste(img , (40 , 165))
-                    return
-                elif self.connection == 'disconnect':                
-                    while True:
-                        self.config.image.paste(img , (40 , 165))
-                        self.config.disp.ShowImage(self.config.image.rotate(180))
-                        time.sleep(0.5)
-                        
-                        clear_img = Image.new("RGB" , (img.width , img.height) , '#f7f1e3')
-                        self.config.image.paste(clear_img , (40,165))
-                        self.config.disp.ShowImage(self.config.image.rotate(180))
-                        time.sleep(0.5)
-            except ValueError as e:
-                    logging.error(f'Invalid status {e}')
-        except Exception as e:
-            print(f'Error loading image : {e}')
+        self.connection = connection_status
+        self.dir = '/home/user-null/Documents/station_lcd/template/picture/Icons'
+        self.last_blink_time = time.time()
+        self.blink_state = False
+
+        self.img_on = Image.open(f'{self.dir}/web_cams.jpg').convert("RGBA")
+        self.clear_img = Image.new("RGBA", self.img_on.size, (0, 0, 0, 0))
+        self.current_image = self.clear_img.copy()
+
+    def update(self):
+        now = time.time()
+        print(f"[CAMS] status: {self.connection}, blink_state: {self.blink_state}")
+        if self.connection == 'off':
+            if now - self.last_blink_time > 0.5:
+                self.blink_state = not self.blink_state
+                self.last_blink_time = now
+
+            self.current_image = self.img_on if self.blink_state else self.clear_img
+
+        elif self.connection == 'on':
+            self.current_image = self.img_on
+
+    def update_connection(self, new_status):
+        self.connection = new_status
