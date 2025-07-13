@@ -4,8 +4,11 @@ from config import config
 from src import copy_right , error, bg , st_number , status , pw_supply , feed , web_cams , network , arduino
 import logging
 from PIL import Image
+
+stop_event = threading.Event()
+
 def render_loop(conf , web_cam , network , arduino , static_background):
-    while True:
+    while not stop_event.is_set():
         web_cam.update()
         network.update()
         arduino.update()
@@ -14,7 +17,10 @@ def render_loop(conf , web_cam , network , arduino , static_background):
         base_temp.paste(web_cam.current_image , (web_cam.X_CORDINATE , web_cam.Y_CORDINATE) , web_cam.current_image )
         base_temp.paste(network.current_image , (network.X_CORDINATE , network.Y_CORDINATE) , network.current_image )
         base_temp.paste(arduino.current_image , (arduino.X_CORDINATE , arduino.Y_CORDINATE) , arduino.current_image )
-        conf.disp.ShowImage(base_temp.rotate(180))
+        try:
+            conf.disp.ShowImage(base_temp.rotate(180))
+        except Exception as e:
+            logging.error(f'ShowImage error: {e}')
         time.sleep(0.1)
 
 if __name__ == '__main__':
@@ -26,7 +32,7 @@ if __name__ == '__main__':
     power_supply_instance = pw_supply.PowerSupply(5 , conf)
     feed_instance = feed.Feed('on', conf)
     web_cam = web_cams.Cams('off', conf)
-    network_con = network.Network(conf)
+    network_con = network.Network(conf , 'best')
     arduino_ctrl = arduino.Arduino(conf)
     pooyesh_machine = copy_right.CopyRight(conf)
     try:
@@ -34,14 +40,14 @@ if __name__ == '__main__':
 
         back_fround_color.background_color()
         station_number.st_number(3, 'off')
-        error_state.error_code()
-        status_value.rounded_rectangle('warning')
-        status_value.circle()
-        status_value.Status_logo_message('warning', 'warning', 'Dosing Error!')
-        power_supply_instance.power_supply()
+        # error_state.error_code()
+        # status_value.rounded_rectangle('warning')
+        # status_value.circle()
+        # status_value.Status_logo_message('warning', 'warning', 'Dosing Error!')
+        # power_supply_instance.power_supply()
         feed_instance.feed_state()
         pooyesh_machine.pooyesh_machine_logo()
-        base_static = conf.image.copy()  # کپی از تصویر ثابت ساخته شده
+        base_static = conf.image.copy()  
 
         render_thread = threading.Thread(target=render_loop, args=(conf, web_cam, network_con, arduino_ctrl , base_static), daemon=True)
         render_thread.start()
@@ -52,5 +58,7 @@ if __name__ == '__main__':
     
     except Exception as e:
         logging.error(f"Error : {e}")
+        stop_event.set()
+        render_thread.join()
         conf.module_die
 
