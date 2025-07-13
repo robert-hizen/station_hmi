@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DDL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+ENv/
+env/
+.venv/
+
+# Logs
+*.log
+
+# VS code settings 
+.vscode/
+
+# Mac and Linux hidden files 
+.DS_Store
+
+# Test cache
+.pytest_cache/
