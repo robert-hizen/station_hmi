@@ -1,7 +1,7 @@
 import time
 import threading
 from config import config
-from src import copy_right , error, bg , st_number , status , pw_supply , feed , web_cams , network , arduino
+from src import cycle_time ,copy_right , error, bg , st_number , status , pw_supply , feed , web_cams , network , arduino
 import logging
 from PIL import Image
 
@@ -23,6 +23,10 @@ def render_loop(conf , web_cam , network , arduino , static_background):
             logging.error(f'ShowImage error: {e}')
         time.sleep(0.1)
 
+def main():
+    pass
+
+
 if __name__ == '__main__':
     conf = config.Configuration()
     back_fround_color = bg.Bg(conf)
@@ -35,16 +39,18 @@ if __name__ == '__main__':
     network_con = network.Network(conf ,'best')
     arduino_ctrl = arduino.Arduino(conf)
     pooyesh_machine = copy_right.CopyRight(conf)
+    cycle_time_instance = cycle_time.CycleTime(conf)
     try:
         conf.init_display()
 
         back_fround_color.background_color()
         station_number.st_number(3, 'off')
-        # error_state.error_code()
+        error_state.error_code()
         # status_value.rounded_rectangle('warning')
         # status_value.circle()
         # status_value.Status_logo_message('warning', 'warning', 'Dosing Error!')
-        # power_supply_instance.power_supply()
+        power_supply_instance.power_supply()
+        cycle_time_instance.cycle(1000)
         feed_instance.feed_state()
         pooyesh_machine.pooyesh_machine_logo()
         base_static = conf.image.copy()  
