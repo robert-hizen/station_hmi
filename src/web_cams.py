@@ -7,8 +7,8 @@ sys.path.append('..')
 from config import config
 
 class Cams:
-    X_CORDINATE = 40
-    Y_CORDINATE = 165
+    X_CORDINATE = 20
+    Y_CORDINATE = 65
 
     def __init__(self, connection_status, conf: config.Configuration):
         self.config = conf

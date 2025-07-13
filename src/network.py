@@ -6,7 +6,7 @@ from config import config
 
 class Network:
     X_CORDINATE = 95
-    Y_CORDINATE = 165
+    Y_CORDINATE = 65
 
     def __init__(self, conf: config.Configuration, status=None):
         self.config = conf
