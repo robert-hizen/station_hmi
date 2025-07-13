@@ -5,8 +5,8 @@ from PIL import Image
 from config import config
 
 class Network:
-    X_CORDINATE = 95
-    Y_CORDINATE = 165
+    X_CORDINATE = 90
+    Y_CORDINATE = 60
 
     def __init__(self, conf: config.Configuration, status=None):
         self.config = conf

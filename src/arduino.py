@@ -5,12 +5,12 @@ from PIL import Image
 from config import config
 
 class Arduino:
-    X_CORDINATE = 155
-    Y_CORDINATE = 165
+    X_CORDINATE = 170
+    Y_CORDINATE = 60
 
     def __init__(self, conf: config.Configuration, status=None):
         self.config = conf
-        self.status = status  # None یا 'on'
+        self.status = status  
         self.dir = '/home/user-null/Documents/station_lcd/template/picture/arduino'
         self.last_blink_time = time.time()
         self.blink_state = False
