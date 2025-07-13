@@ -8,12 +8,12 @@ class Feed:
         self.config = conf
         self.state = state
     def feed_state(self):
-        feed_font = ImageFont.truetype('/home/user-null/Documents/station_lcd/Font/bold.otf' , size=40)
-        circle_bound = (148 , 15 , 187 , 60)         # (left , top , right , bottom)
+        feed_font = ImageFont.truetype('/home/user-null/Documents/station_lcd/Font/bold.otf' , size=35)
+        circle_bound = (148 , 30 , 183 , 70)         # (left , top , right , bottom)
         try:
             if self.state == 'on':
                 self.config.draw.text(
-                    (155 , 20),
+                    (155 , 35),
                     text="F",
                     fill= '#2ecc71',
                     font= feed_font

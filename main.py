@@ -32,7 +32,7 @@ if __name__ == '__main__':
     power_supply_instance = pw_supply.PowerSupply(5 , conf)
     feed_instance = feed.Feed('on', conf)
     web_cam = web_cams.Cams('off', conf)
-    network_con = network.Network(conf , 'best')
+    network_con = network.Network(conf ,'best')
     arduino_ctrl = arduino.Arduino(conf)
     pooyesh_machine = copy_right.CopyRight(conf)
     try:

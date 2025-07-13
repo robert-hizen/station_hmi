@@ -5,7 +5,7 @@ sys.path.append('..')
 from config import config
 class CopyRight:
     X_CORDINATE = 110
-    Y_CORDINATE = 210
+    Y_CORDINATE = 213
     def __init__(self , conf : config.Configuration):
         self.config = conf
         self.dir = '/home/user-null/Documents/station_lcd/template/picture'
