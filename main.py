@@ -38,11 +38,11 @@ def main():
 
         back_fround_color.background_color()
         station_number.st_number(7, 'on')
-        # error_state.error_code()
+        error_state.error_code()
         status_value.rounded_rectangle('error')
+        cycle_time_instance.cycle(1000)
         status_value.Status_logo_message('Dosing Error! please enter a valid error')
         power_supply_instance.power_supply()
-        # cycle_time_instance.cycle(1000)
         feed_instance.feed_state()
         # pooyesh_machine.pooyesh_machine_logo()
         base_static = conf.image.copy()  

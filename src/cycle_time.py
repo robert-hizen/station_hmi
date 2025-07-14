@@ -1,6 +1,6 @@
 import sys
 import logging
-from PIL import ImageFont
+from PIL import ImageFont , Image , ImageDraw
 sys.path.append('..')
 from config import config
 class CycleTime:
@@ -9,18 +9,26 @@ class CycleTime:
         dir = '/home/user-null/Documents/station_lcd/Font'
         self.font = ImageFont.truetype(f'{dir}/bold.otf')
     def cycle(self , cycle_txt):
-        self.config.draw.rounded_rectangle(
+        temp_img = Image.new("RGBA" , (120,120) , (0,0,0,0))
+        temp_draw = ImageDraw.Draw(temp_img)
+
+        temp_draw.rounded_rectangle(
             [
-                (145 , 90),
-                (200 , 119)
+                (30 , 80),
+                (70 , 100)
             ],
             radius=10,
             fill='#aaa69d',
 
         )
-        self.config.draw.text(
-            (155,100),
+        temp_draw.text(
+            (40,85),
             text=f'{cycle_txt}',
             fill='#f5f6fa',
             font=self.font
         )
+
+        rotated_img = temp_img.rotate(-45 , expand=True).convert("RGBA")
+
+        y_top = -70
+        self.config.image.paste(rotated_img , (125 , y_top) , rotated_img)
