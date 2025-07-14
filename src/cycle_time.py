@@ -12,7 +12,7 @@ class CycleTime:
         self.config.draw.rounded_rectangle(
             [
                 (145 , 90),
-                (200 , 118)
+                (200 , 119)
             ],
             radius=10,
             fill='#aaa69d',

@@ -9,13 +9,13 @@ class Status:
     def rounded_rectangle(self , status):
         if status == 'error':
             self.config.draw.rounded_rectangle(
-                [(20 , 90) , (220 , 157)],
+                [(17 , 121) , (223 , 210)],
                 radius=50,
                 fill= '#ff4d4d'  
         )
         elif status == 'warning':
             self.config.draw.rounded_rectangle(
-                [(20 , 90) , (220 , 157)],
+                [(17 , 121) , (223 , 210)],
                 radius=50,
                 fill= '#ff9f1a'  
         )   
@@ -41,8 +41,8 @@ class Status:
             fill= '#4b4b4b',
             font= font
         )
-        error_img = Image.open(f'template/picture/warning_error/{status}.jpg')
-        self.config.image.paste(error_img , (55 , 100))
+        # error_img = Image.open(f'template/picture/warning_error/{status}.jpg')
+        # self.config.image.paste(error_img , (55 , 100))
 
         wrapped_text = self.wrap_text(error_text , line_lenght= 13 )
         error_font = self.config.big_bold_font
