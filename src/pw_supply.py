@@ -16,7 +16,7 @@ class PowerSupply:
         self.config.draw.rounded_rectangle(
             [
                 (30 , 90),
-                (70 , 118)
+                (70 , 119)
             ],
             radius=10,
             fill= '#aaa69d'

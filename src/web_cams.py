@@ -8,7 +8,7 @@ from config import config
 
 class Cams:
     X_CORDINATE = 3
-    Y_CORDINATE = 90
+    Y_CORDINATE = 95
 
     def __init__(self, connection_status, conf: config.Configuration):
         self.config = conf

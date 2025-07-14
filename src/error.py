@@ -17,7 +17,7 @@ class Error:
         self.config.draw.rounded_rectangle(
             [
                 (75 , 90),
-                (140 , 118)
+                (140 , 119)
             ],
             radius=10,
             fill='#aaa69d',
