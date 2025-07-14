@@ -14,10 +14,10 @@ class StationNumber:
         try:
             img = Image.open(f'template/picture/{num}-solid.jpg').convert("RGB")
             power_image = Image.open(f'template/picture/Powers/power-{state}.jpg')
-            img_resized = img.resize((45,45))
-            power_resized = power_image.resize((30,30))
-            self.config.image.paste(img_resized , (100,35))
-            self.config.image.paste(power_resized , (45,45) )
+            img_resized = img.resize((80 ,80))
+            power_resized = power_image.resize((20,20))
+            self.config.image.paste(img_resized , (90,35))
+            self.config.image.paste(power_resized , (10,67) )
         except Exception as e:
             logging.error(f"Error loading image: {e}")
             self.config.module_die()
