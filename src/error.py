@@ -14,18 +14,23 @@ class Error:
         #     fill='#ff3838',
         #     font=self.error_font
         # )
-        self.config.draw.rounded_rectangle(
+        temp_img = Image.new("RGBA" , (120 , 120 ) , (0,0,0,0))
+        temp_draw = ImageDraw.Draw(temp_img)
+        temp_draw.rounded_rectangle(
             [
-                (75 , 90),
-                (140 , 119)
+                (45 , 90),
+                (130 , 119)
             ],
             radius=10,
             fill='#aaa69d',
 
         )
-        self.config.draw.text(
-            (80,100),
+        temp_draw.text(
+            (50,100),
             text='Error',
             fill='#f5f6fa',
             font=self.error_font
         )
+        rotated_img = temp_img.rotate(-70 , expand=True).convert("RGBA")
+        y_top = -29
+        self.config.image.paste(rotated_img , (174 , y_top) , rotated_img)

@@ -44,7 +44,7 @@ def main():
         status_value.Status_logo_message('Dosing Error! please enter a valid error')
         power_supply_instance.power_supply()
         feed_instance.feed_state()
-        # pooyesh_machine.pooyesh_machine_logo()
+        pooyesh_machine.pooyesh_machine_logo()
         base_static = conf.image.copy()  
 
         render_thread = threading.Thread(target=render_loop, args=(conf, web_cam, network_con, arduino_ctrl , base_static), daemon=True)
