@@ -13,13 +13,13 @@ class PowerSupply:
         # self.config.image.paste(power_image , (55,60))
         # seprator_line = Image.open('template/picture/vertical_line/line.jpg') 
         # self.config.image.paste(seprator_line , (113,63))
-        temp_img = Image.new("RGBA" , (150,1) , (0,0,0,0))
+        temp_img = Image.new("RGBA" , (130  ,130) , (0,0,0,0))
         temp_draw = ImageDraw.Draw(temp_img)
 
         temp_draw.rounded_rectangle(
             [
                 (30 , 90),
-                (70 , 119)
+                (70 , 115)
             ],
             radius=10,
             fill= '#aaa69d'
@@ -32,5 +32,10 @@ class PowerSupply:
         )
         rotated_img = temp_img.rotate(0,expand=True).convert("RGBA")
 
-        self.config.image.paste(rotated_img , (100,1) , rotated_img)
+        canvas_width = self.config.image.width
+        rotated_width = rotated_img.width
+        x_center = (canvas_width - rotated_width) // 2
+        y_top = -86
+
+        self.config.image.paste(rotated_img , (90,y_top) , rotated_img)
             

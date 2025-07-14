@@ -1,5 +1,5 @@
 import sys
-from PIL import ImageFont
+from PIL import ImageFont , Image , ImageDraw
 sys.path.append('..') 
 from config import config
 class Error:
