@@ -48,7 +48,7 @@ if __name__ == '__main__':
         error_state.error_code()
         status_value.rounded_rectangle('warning')
         # status_value.circle()
-        # status_value.Status_logo_message('warning','Dosing Error!')
+        status_value.Status_logo_message('Dosing Error! please enter a valid error')
         power_supply_instance.power_supply()
         cycle_time_instance.cycle(1000)
         feed_instance.feed_state()
