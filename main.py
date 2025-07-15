@@ -1,38 +1,36 @@
-import time
-import threading
-from config import config
-from src import cycle_time ,copy_right , error, bg , st_number , status , pw_supply , feed , web_cams , network , arduino
+import asyncio
 import logging
-from PIL import Image
+from config import config
+from src import cycle_time, copy_right, error, bg, st_number, status, pw_supply, feed, web_cams, network, arduino
 
-stop_event = threading.Event()
-
-def render_loop(conf , web_cam , network , arduino , static_background):
-    while not stop_event.is_set():
+async def render_loop(conf, web_cam, network, arduino, static_background):
+    while True:
         web_cam.update()
         network.update()
         arduino.update()
 
         base_temp = static_background.copy()
-        base_temp.paste(web_cam.current_image , (web_cam.X_CORDINATE , web_cam.Y_CORDINATE) , web_cam.current_image )
-        base_temp.paste(network.current_image , (network.X_CORDINATE , network.Y_CORDINATE) , network.current_image )
-        base_temp.paste(arduino.current_image , (arduino.X_CORDINATE , arduino.Y_CORDINATE) , arduino.current_image )
-        conf.disp.ShowImage(base_temp.rotate(180))
-        time.sleep(0.1)
+        base_temp.paste(web_cam.current_image, (web_cam.X_CORDINATE, web_cam.Y_CORDINATE), web_cam.current_image)
+        base_temp.paste(network.current_image, (network.X_CORDINATE, network.Y_CORDINATE), network.current_image)
+        base_temp.paste(arduino.current_image, (arduino.X_CORDINATE, arduino.Y_CORDINATE), arduino.current_image)
 
-def main():
+        conf.disp.ShowImage(base_temp.rotate(180))
+        await asyncio.sleep(0.1)
+
+async def main():
     conf = config.Configuration()
     back_fround_color = bg.Bg(conf)
     station_number = st_number.StationNumber(conf)
     status_value = status.Status(conf)
     error_state = error.Error('1234', conf)
-    power_supply_instance = pw_supply.PowerSupply(5 , conf)
+    power_supply_instance = pw_supply.PowerSupply(5, conf)
     feed_instance = feed.Feed('off', conf)
-    web_cam = web_cams.Cams('off', conf)
-    network_con = network.Network(conf ,None)
+    web_cam = web_cams.Cams('on', conf)
+    network_con = network.Network(conf, None)
     arduino_ctrl = arduino.Arduino(conf)
     pooyesh_machine = copy_right.CopyRight(conf)
     cycle_time_instance = cycle_time.CycleTime(conf)
+
     try:
         conf.init_display()
 
@@ -45,22 +43,20 @@ def main():
         power_supply_instance.power_supply()
         feed_instance.feed_state()
         pooyesh_machine.pooyesh_machine_logo()
-        base_static = conf.image.copy()  
 
-        render_thread = threading.Thread(target=render_loop, args=(conf, web_cam, network_con, arduino_ctrl , base_static), daemon=True)
-        render_thread.start()
-        # conf.show_image()
+        base_static = conf.image.copy()
 
+        # شروع حلقه رندر به صورت task
+        render_task = asyncio.create_task(render_loop(conf, web_cam, network_con, arduino_ctrl, base_static))
+
+        # اجرای اصلی برنامه تا ابد
         while True:
-            time.sleep(1)
-    
+            await asyncio.sleep(1)
+
     except Exception as e:
         logging.error(f"Error : {e}")
-        stop_event.set()
-        render_thread.join()
-        conf.module_die
+        conf.module_die()
 
-
+# اجرای برنامه
 if __name__ == '__main__':
-    main()
-
+    asyncio.run(main())
