@@ -6,7 +6,7 @@ class Error:
     def __init__(self , error_code ,conf : config.Configuration):
         self.config = conf
         self.error = error_code
-        self.error_font  = ImageFont.truetype('/home/user-null/Documents/station_lcd/Font/bold.otf' , size=11)
+        self.error_font  = ImageFont.truetype('/home/user-null/Documents/station_lcd/Font/bold.otf' , size=14)
     def error_code(self):
         # self.config.draw.text(
         #     (132,35),

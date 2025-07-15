@@ -30,5 +30,5 @@ class CycleTime:
 
         rotated_img = temp_img.rotate(45 , expand=True).convert("RGBA")
 
-        y_top = -70
-        self.config.image.paste(rotated_img , ( , y_top) , rotated_img)
+        y_top = -55
+        self.config.image.paste(rotated_img , ( -70 , y_top) , rotated_img)

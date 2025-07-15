@@ -30,12 +30,12 @@ class PowerSupply:
             fill='#f7f1e3',
             font= self.voltage_font,
         )
-        rotated_img = temp_img.rotate(0,expand=True).convert("RGBA")
+        rotated_img = temp_img.rotate(80,expand=True).convert("RGBA")
 
-        canvas_width = self.config.image.width
-        rotated_width = rotated_img.width
-        x_center = (canvas_width - rotated_width) // 2
-        y_top = -86
+        # canvas_width = self.config.image.width
+        # rotated_width = rotated_img.width
+        # x_center = (canvas_width - rotated_width) // 2
+        y_top = 0
 
-        self.config.image.paste(rotated_img , (90,y_top) , rotated_img)
+        self.config.image.paste(rotated_img , (-96,y_top) , rotated_img)
             
