@@ -5,8 +5,8 @@ from PIL import Image
 from config import config
 
 class Arduino:
-    X_CORDINATE = 30
-    Y_CORDINATE = 40
+    X_CORDINATE = 50
+    Y_CORDINATE = 20
 
     def __init__(self, conf: config.Configuration, status=None):
         self.config = conf

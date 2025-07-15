@@ -28,7 +28,7 @@ class CycleTime:
             font=self.font
         )
 
-        rotated_img = temp_img.rotate(-45 , expand=True).convert("RGBA")
+        rotated_img = temp_img.rotate(45 , expand=True).convert("RGBA")
 
         y_top = -70
-        self.config.image.paste(rotated_img , (125 , y_top) , rotated_img)
+        self.config.image.paste(rotated_img , ( , y_top) , rotated_img)

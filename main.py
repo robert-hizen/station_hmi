@@ -24,8 +24,8 @@ async def main():
     status_value = status.Status(conf)
     error_state = error.Error('1234', conf)
     power_supply_instance = pw_supply.PowerSupply(5, conf)
-    feed_instance = feed.Feed('off', conf)
-    web_cam = web_cams.Cams('on', conf)
+    feed_instance = feed.Feed('on', conf)
+    web_cam = web_cams.Cams('off', conf)
     network_con = network.Network(conf, None)
     arduino_ctrl = arduino.Arduino(conf)
     pooyesh_machine = copy_right.CopyRight(conf)
@@ -35,21 +35,19 @@ async def main():
         conf.init_display()
 
         back_fround_color.background_color()
-        station_number.st_number(7, 'on')
+        station_number.st_number(7, 'off')
         error_state.error_code()
-        status_value.rounded_rectangle('error')
+        status_value.rounded_rectangle('warning')
         cycle_time_instance.cycle(1000)
-        status_value.Status_logo_message('Dosing Error! please enter a valid error')
-        power_supply_instance.power_supply()
+        # status_value.Status_logo_message('Dosing Error! please enter a valid error')
+        # power_supply_instance.power_supply()
         feed_instance.feed_state()
         pooyesh_machine.pooyesh_machine_logo()
 
         base_static = conf.image.copy()
 
-        # شروع حلقه رندر به صورت task
         render_task = asyncio.create_task(render_loop(conf, web_cam, network_con, arduino_ctrl, base_static))
 
-        # اجرای اصلی برنامه تا ابد
         while True:
             await asyncio.sleep(1)
 
