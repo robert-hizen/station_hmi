@@ -16,8 +16,8 @@ class StationNumber:
             power_image = Image.open(f'template/picture/Powers/power-{state}.jpg')
             img_resized = img.resize((80 ,80))
             power_resized = power_image.resize((20,20))
-            self.config.image.paste(img_resized , (90,35))
-            self.config.image.paste(power_resized , (10,67) )
+            self.config.image.paste(img_resized , (80,35))
+            self.config.image.paste(power_resized , (79,7) )
         except Exception as e:
             logging.error(f"Error loading image: {e}")
             self.config.module_die()

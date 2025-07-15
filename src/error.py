@@ -18,7 +18,7 @@ class Error:
         temp_draw = ImageDraw.Draw(temp_img)
         temp_draw.rounded_rectangle(
             [
-                (45 , 90),
+                (25 , 90),
                 (130 , 119)
             ],
             radius=10,
@@ -26,11 +26,11 @@ class Error:
 
         )
         temp_draw.text(
-            (50,100),
-            text='Error',
+            (30,100),
+            text='MFE:2131',
             fill='#f5f6fa',
             font=self.error_font
         )
-        rotated_img = temp_img.rotate(-70 , expand=True).convert("RGBA")
-        y_top = -29
-        self.config.image.paste(rotated_img , (174 , y_top) , rotated_img)
+        rotated_img = temp_img.rotate(-69 , expand=True).convert("RGBA")
+        y_top = -24
+        self.config.image.paste(rotated_img , (177 , y_top) , rotated_img)

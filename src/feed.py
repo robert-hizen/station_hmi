@@ -9,18 +9,18 @@ class Feed:
         self.state = state
     def feed_state(self):
         feed_font = ImageFont.truetype('/home/user-null/Documents/station_lcd/Font/bold.otf' , size=30)
-        circle_bound = (85 , 2 , 115 , 30) # (left , top , right , bottom)
+        circle_bound = (135 , 4 , 162 , 30) # (left , top , right , bottom)
         try:
             if self.state == 'on':
                 self.config.draw.text(
-                    (175 , 45),
+                    (140 , 5),
                     text="F",
                     fill= '#2ecc71',
                     font= feed_font
                 )
             elif self.state in 'off':
                 self.config.draw.text(
-                    (90,5),
+                    (140,5),
                     text='F',
                     fill='#e74c3c',
                     font=feed_font                    
