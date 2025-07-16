@@ -22,14 +22,14 @@ class Error:
         temp_draw.pieslice(
             [
                 (20,160),
-                (130,180)
+                (110,180)
             ],
             start=180,
             end=360,
             fill='#535c68'
         )
         temp_draw.text(
-            (30,140),
+            (30,143),
             text='MFE:2131',
             fill='#f5f6fa',
             font=self.error_font

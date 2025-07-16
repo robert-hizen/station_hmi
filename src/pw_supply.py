@@ -7,7 +7,7 @@ class PowerSupply:
         self.voltage = voltage
         self.config = conf
         font_directory = '/home/user-null/Documents/station_lcd/Font/'
-        self.voltage_font = ImageFont.truetype(font_directory + 'bold.otf' , size=20)
+        self.voltage_font = ImageFont.truetype(font_directory + 'bold.otf' , size=16)
     def power_supply(self):
         # power_image = Image.open('template/picture/Powers/power-supply.jpg')
         # self.config.image.paste(power_image , (55,60))
