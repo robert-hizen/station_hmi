@@ -35,10 +35,10 @@ async def main():
         conf.init_display()
 
         back_fround_color.background_color()
-        station_number.st_number(9, 'on')
+        station_number.st_number(7, 'off')
         error_state.error_code()
         # error_state.create_pieslice()
-        status_value.rounded_rectangle('warning')
+        status_value.rounded_rectangle('error')
         cycle_time_instance.cycle(1000)
         status_value.Status_logo_message('Dosing Error! please enter a valid error')
         power_supply_instance.power_supply()

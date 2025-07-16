@@ -7,7 +7,7 @@ class PowerSupply:
         self.voltage = voltage
         self.config = conf
         font_directory = '/home/user-null/Documents/station_lcd/Font/'
-        self.voltage_font = ImageFont.truetype(font_directory + 'bold.otf' , size=16)
+        self.voltage_font = ImageFont.truetype(font_directory + 'bold.otf' , size=12)
     def power_supply(self):
         # power_image = Image.open('template/picture/Powers/power-supply.jpg')
         # self.config.image.paste(power_image , (55,60))
@@ -16,18 +16,25 @@ class PowerSupply:
         temp_img = Image.new("RGBA" , (130  ,130) , (0,0,0,0))
         temp_draw = ImageDraw.Draw(temp_img)
 
-        temp_draw.pieslice(
+        temp_draw.rectangle(
             [
-                (30 , 90),
+                (25 , 90),
                 (70 , 115)
             ],
-            start=0,
-            end=360,
             fill= '#aaa69d',
             outline='#aaa69d'
         )
+        temp_draw.pieslice(
+            [
+                (24,110),
+                (80 , 120)
+            ],
+            start=180,
+            end=360,
+            fill= (0,0,0,0)
+        )
         temp_draw.text(
-            (35,95),
+            (42,96),
             text=f'{self.voltage}V',
             fill='#f7f1e3',
             font= self.voltage_font,
