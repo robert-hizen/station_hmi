@@ -12,13 +12,15 @@ class CycleTime:
         temp_img = Image.new("RGBA" , (120,120) , (0,0,0,0))
         temp_draw = ImageDraw.Draw(temp_img)
 
-        temp_draw.rounded_rectangle(
+        temp_draw.pieslice(
             [
                 (30 , 80),
                 (70 , 100)
             ],
-            radius=10,
+            start=0,
+            end=360,
             fill='#aaa69d',
+            outline='#aaa69d'
 
         )
         temp_draw.text(

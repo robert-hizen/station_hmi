@@ -23,7 +23,6 @@ class Network:
     def update(self):
         now = time.time()
         if self.status is None:
-            # چشمک زدن برای حالت no connection
             if now - self.last_blink_time > 0.3:
                 self.blink_state = not self.blink_state
                 self.last_blink_time = now

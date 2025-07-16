@@ -16,13 +16,15 @@ class PowerSupply:
         temp_img = Image.new("RGBA" , (130  ,130) , (0,0,0,0))
         temp_draw = ImageDraw.Draw(temp_img)
 
-        temp_draw.rounded_rectangle(
+        temp_draw.pieslice(
             [
                 (30 , 90),
                 (70 , 115)
             ],
-            radius=10,
-            fill= '#aaa69d'
+            start=0,
+            end=360,
+            fill= '#aaa69d',
+            outline='#aaa69d'
         )
         temp_draw.text(
             (35,95),
