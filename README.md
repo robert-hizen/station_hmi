@@ -1,8 +1,8 @@
 # station-lcd
 
 UI for Raspberry Pi with GC9A01-based LCD and serial connection to Arduino.
-
-
+### TFT Module GCA901
+![TFT Moudile GCA901](/home/user-null/Documents/station_lcd/template/picture/TFT.jpg)
 ## Wire Connections
 |GCA901|Rasberrypi 4b|
 |------|-------------|
