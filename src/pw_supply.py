@@ -16,22 +16,23 @@ class PowerSupply:
         temp_img = Image.new("RGBA" , (130  ,130) , (0,0,0,0))
         temp_draw = ImageDraw.Draw(temp_img)
 
-        temp_draw.rectangle(
+        temp_draw.rounded_rectangle(
             [
-                (25 , 90),
-                (70 , 115)
+                (25 , 80),
+                (70 , 120)
             ],
+            radius=30,
             fill= '#aaa69d',
-            outline='#aaa69d'
+            # outline='#aaa69d'
         )
         temp_draw.pieslice(
             [
                 (24,110),
-                (80 , 120)
+                (70 , 130)
             ],
             start=180,
             end=360,
-            fill= (0,0,0,0)
+            fill= '#535c68'
         )
         temp_draw.text(
             (42,96),
@@ -44,7 +45,7 @@ class PowerSupply:
         # canvas_width = self.config.image.width
         # rotated_width = rotated_img.width
         # x_center = (canvas_width - rotated_width) // 2
-        y_top = 0
+        y_top = 2
 
         self.config.image.paste(rotated_img , (-96,y_top) , rotated_img)
             

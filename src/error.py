@@ -11,14 +11,18 @@ class Error:
     
         temp_img = Image.new("RGBA" , (130 , 170 ) , (0,0,0,0))
         temp_draw = ImageDraw.Draw(temp_img)
-        
+        # we use a rounded rectangle for draw a rectangle
         temp_draw.rounded_rectangle(
-                [  (20 , 40),
-                   (120 , 170)
-                ],  
-                radius=10,
+                [  
+                    # first cordinate for move x horizontally and second cordinate use to move rectangle vertically
+                   (19 , 130),
+                   (114 , 170)
+                ],
+
+                radius=30,
                 fill='#aaa69d',
         )
+        # using for create indented rounded rectangle
         temp_draw.pieslice(
             [
                 (20,160),
@@ -29,29 +33,14 @@ class Error:
             fill='#535c68'
         )
         temp_draw.text(
-            (30,143),
+            (34,135),
             text='MFE:2131',
             fill='#f5f6fa',
             font=self.error_font
         )
-        # -69
         print(temp_img.size)
         rotated_img = temp_img.rotate(-69 , expand=True).convert("RGBA")
         y_top = -34
-        self.config.image.paste(rotated_img , (177 , y_top) , rotated_img)
+        self.config.image.paste(rotated_img , (170 , y_top) , rotated_img)
         print(rotated_img.size)
         self.config.image.save("Output.png")
-    # def create_pieslice(self):
-    #     if self.config.image is None:
-    #         print("It is a none value.")
-    #     temp_img = Image.new("RGBA" , (320 , 240 ) , (0,0,0,0))
-    #     temp_draw = ImageDraw.Draw(temp_img)
-    #     temp_draw.pieslice(
-    #         [(100,60),(200  ,140)],
-    #         start=180,
-    #         end=360,
-    #         fill= '#FFFFFF'
-    #     )
-    #     rotated = temp_img.rotate(-45 , expand=True)
-    #     self.config.image.paste(rotated , (0,0) , rotated)
-    #     self.config.image.save('rotated_pieslice.png')
