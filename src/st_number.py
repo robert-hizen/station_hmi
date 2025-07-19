@@ -1,22 +1,32 @@
 import sys
 import logging
-from PIL import Image
+from PIL import Image , ImageFont
 sys.path.append('..')
 from config import config
 class StationNumber:
     def __init__(self , conf : config.Configuration):
         self.config = conf
+        dir = '/home/user-null/Documents/station_lcd/Font'
+        self.font = ImageFont.truetype(f'{dir}/bold.otf' , size=115)
     def st_number(self , num , state):
         # i didnt use loops for time complexity
-        if not (1<= num <= 9):
-            logging.error("Invalid station number")
-            self.config.module_die()
+        if 1<= num <= 9:
+            self.config.draw.text(
+                (85,25),
+                text=f'{num}',
+                font=self.font,
+                fill='#FFFFFF'
+            )
+        elif num >= 9:
+            self.config.draw.text(
+                
+            )
         try:
-            img = Image.open(f'template/picture/{num}-solid.jpg').convert("RGB")
+        #     # img = Image.open(f'template/picture/{num}-solid.jpg').convert("RGB")
             power_image = Image.open(f'template/picture/Powers/power-{state}.jpg')
-            img_resized = img.resize((80 ,80))
+        #     # img_resized = img.resize((80 ,80))
             power_resized = power_image.resize((20,20))
-            self.config.image.paste(img_resized , (80,35))
+        #     # self.config.image.paste(img_resized , (80,35))
             self.config.image.paste(power_resized , (79,7) )
         except Exception as e:
             logging.error(f"Error loading image: {e}")
