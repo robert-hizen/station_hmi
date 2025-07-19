@@ -1,6 +1,9 @@
 # station-lcd
 
 UI for Raspberry Pi with GC9A01-based LCD and serial connection to Arduino.
+you can download dependecies from requirments.txt file
+you must be use **spi** protocol
+`pip install -r requirments.txt`
 ### TFT Module GCA901
 ![TFT Moudile GCA901](/template/picture/TFT.jpg)
 ### Rasberry pi 4b 
