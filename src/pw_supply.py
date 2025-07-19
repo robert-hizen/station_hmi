@@ -18,7 +18,7 @@ class PowerSupply:
 
         temp_draw.rounded_rectangle(
             [
-                (25 , 80),
+                (30 , 80),
                 (70 , 120)
             ],
             radius=30,

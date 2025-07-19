@@ -2,11 +2,15 @@ import sys
 sys.path.append('../')
 from config import config
 class Bg:
+    X_ZERO_CORDINATE = 0
+    Y_ZERO_CORDINATE = 0
     def __init__(self , conf : config.Configuration):
         self.config = conf
     def background_color(self):
-        # create a rectangle for partition lcd [x0 , y0 => x1 , y1]
+        # Create a half Circle with background color <#535c68>
+        X_ONE_CORDINATE = self.config.width
+        Y_ONE_CORDINATE = self.config.height
         self.config.draw.rectangle(
-        [0, 0, self.config.width, self.config.height],
+        [Bg.X_ZERO_CORDINATE, Bg.Y_ZERO_CORDINATE, X_ONE_CORDINATE, Y_ONE_CORDINATE],
         fill='#535c68'
         )

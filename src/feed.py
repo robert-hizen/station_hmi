@@ -1,9 +1,16 @@
 import sys
 import logging
-from PIL import Image , ImageFont
+from PIL import ImageFont
 sys.path.append('..')
 from config import config
 class Feed:
+    # ON / OFF TEXT
+    TEXT_ON_CORDINATE  , TEXT_OFF_CORDINATE= (140,5) , (140,5)
+    COLOR_OFF , COLOR_ON = '#e74c3c' , '#2ecc71'
+
+    # Arc Init variables
+    ARC_COLOR = '#7f8c8d'
+    ARC_WIDTH = 2
     def __init__(self , state, conf : config.Configuration):
         self.config = conf
         self.state = state
@@ -13,16 +20,16 @@ class Feed:
         try:
             if self.state == 'on':
                 self.config.draw.text(
-                    (140 , 5),
+                    Feed.TEXT_ON_CORDINATE,
                     text="F",
-                    fill= '#2ecc71',
+                    fill= Feed.COLOR_ON,
                     font= feed_font
                 )
             elif self.state in 'off':
                 self.config.draw.text(
-                    (140,5),
+                    Feed.TEXT_OFF_CORDINATE,
                     text='F',
-                    fill='#e74c3c',
+                    fill= Feed.COLOR_OFF,
                     font=feed_font                    
                 )
             else:
@@ -31,13 +38,9 @@ class Feed:
                 circle_bound,
                 start=0,
                 end=360,
-                fill='#7f8c8d',
-                width=2
+                fill= Feed.ARC_COLOR,
+                width= Feed.ARC_WIDTH
             )
         except ValueError as e:
             logging.error(f'Undifiend state : {e}')
             self.config.module_die()
-
-
-        # img = Image.open(f'template/picture/Powers/power-{self.state}.jpg') 
-        # self.config.image.paste(img , (185 , 63))

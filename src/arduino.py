@@ -1,16 +1,14 @@
 import time
-import threading
-import logging
 from PIL import Image
 from config import config
 
 class Arduino:
     X_CORDINATE = 50
     Y_CORDINATE = 20
-
+    BLINKER_TIME = 0.3
     def __init__(self, conf: config.Configuration, status=None):
         self.config = conf
-        self.status = status  # None یا 'on'
+        self.status = status
         self.dir = '/home/user-null/Documents/station_lcd/template/picture/arduino'
         self.last_blink_time = time.time()
         self.blink_state = False
@@ -22,7 +20,7 @@ class Arduino:
     def update(self):
         now = time.time()
         if self.status is None:
-            if now - self.last_blink_time > 0.3:
+            if now - self.last_blink_time > Arduino.BLINKER_TIME:
                 self.blink_state = not self.blink_state
                 self.last_blink_time = now
             self.current_image = self.img_on if self.blink_state else self.clear_img
