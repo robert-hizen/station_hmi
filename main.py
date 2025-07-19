@@ -35,7 +35,7 @@ async def main():
         conf.init_display()
 
         back_fround_color.background_color()
-        station_number.st_number(8, 'off')
+        station_number.st_number(10, 'off')
         error_state.error_code()
         power_supply_instance.power_supply()
         status_value.rounded_rectangle('warning')

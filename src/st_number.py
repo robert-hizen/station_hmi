@@ -7,19 +7,23 @@ class StationNumber:
     def __init__(self , conf : config.Configuration):
         self.config = conf
         dir = '/home/user-null/Documents/station_lcd/Font'
-        self.font = ImageFont.truetype(f'{dir}/bold.otf' , size=115)
+        self.font_one_digit = ImageFont.truetype(f'{dir}/bold.otf' , size=115)
+        self.font_two_digit = ImageFont.truetype(f'{dir}/bold.otf' , size=100)
     def st_number(self , num , state):
         # i didnt use loops for time complexity
         if 1<= num <= 9:
             self.config.draw.text(
                 (85,25),
                 text=f'{num}',
-                font=self.font,
+                font=self.font_one_digit,
                 fill='#FFFFFF'
             )
-        elif num >= 9:
+        elif 9 < num <= 20:
             self.config.draw.text(
-                
+                (67,30),
+                text=f'{num}',
+                font=self.font_two_digit,
+                fill='#ffffff'
             )
         try:
         #     # img = Image.open(f'template/picture/{num}-solid.jpg').convert("RGB")

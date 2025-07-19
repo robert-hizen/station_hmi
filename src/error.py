@@ -16,7 +16,7 @@ class Error:
                 [  
                     # first cordinate for move x horizontally and second cordinate use to move rectangle vertically
                    (19 , 130),
-                   (114 , 170)
+                   (114 , 157)
                 ],
 
                 radius=30,
@@ -25,8 +25,8 @@ class Error:
         # using for create indented rounded rectangle
         temp_draw.pieslice(
             [
-                (20,160),
-                (110,180)
+                (20,152),
+                (110,170)
             ],
             start=180,
             end=360,
@@ -39,7 +39,7 @@ class Error:
             font=self.error_font
         )
         print(temp_img.size)
-        rotated_img = temp_img.rotate(-69 , expand=True).convert("RGBA")
+        rotated_img = temp_img.rotate(-67 , expand=True).convert("RGBA")
         y_top = -34
         self.config.image.paste(rotated_img , (170 , y_top) , rotated_img)
         print(rotated_img.size)
