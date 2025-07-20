@@ -9,11 +9,11 @@ class CycleTime:
     BACKGROUND_COLOR = (0,0,0,0)
     # Initial rounded rectangle variables
     ROUNDED_RECTANGLE_CORDINATE = [(16,80),(57,110)]
-    ROUNDED_RADIUS = 30
+    ROUNDED_RADIUS = 13
     ROUNDED_RECTANGLE_COLOR = '#aaa69d'
 
     # Initial Pieslice indented cut variables
-    PIESLICE_CORDNIATE = [(15,103) , (60,125)]
+    PIESLICE_CORDNIATE = [(10,103) , (60,125)]
     PIESLICE_COLOR = '#535c68'
 
     # Initialize Text

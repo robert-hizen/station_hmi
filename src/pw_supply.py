@@ -12,8 +12,8 @@ class PowerSupply:
     ROUNDED_RECTANGLE_COLOR = '#aaa69d'
 
     # Initial Pieslice indented cut variables
-    PIESLICE_CORDINATE = [(24 , 110) , (70,130)]
-    PIESLICE_COLOR = '#535C68'
+    PIESLICE_CORDINATE = [(30 , 112) , (70,130)]
+    PIESLICE_COLOR = '#535c68'
 
     # Initialize Text
     TEXT_CORDINATE = (42,96)

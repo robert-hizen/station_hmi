@@ -12,7 +12,7 @@ class Error:
     ROUNDED_RECTANGLE_COLOR = '#aaa69d'
 
     # Initial Pieslice indented cut variables
-    PIESLICE_CORDNIATE = [(20,152) , (110,170)]
+    PIESLICE_CORDNIATE = [(25,152) , (125,170)]
     PIESLICE_COLOR = '#535c68'
 
     # Initialize Text
@@ -21,7 +21,7 @@ class Error:
 
     # Rotate degree and final cordinate for image
     DEGREE = -69
-    FINAL_CORDINATE = (170 , -34)
+    FINAL_CORDINATE = (168 , -34)
     def __init__(self , error_code ,conf : config.Configuration):
         self.config = conf
         self.error = error_code
