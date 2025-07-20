@@ -23,8 +23,8 @@ async def render_loop(conf,holder_web_cam ,  web_cam, network, arduino, static_b
 async def main():
     conf = config.Configuration()
     back_fround_color = bg.Bg(conf)
-    station_number = st_number.StationNumber(conf)
-    status_value = status.Status(conf)
+    station_number = st_number.StationNumber(conf , 12 , 'on')
+    status_value = status.Status(conf , 'error' , 'Dosing Error! please enter a valid error' )
     error_state = error.Error('1234', conf)
     power_supply_instance = pw_supply.PowerSupply(5, conf)
     feed_instance = feed.Feed('off', conf)
@@ -33,18 +33,18 @@ async def main():
     network_con = network.Network(conf, 'off')
     arduino_ctrl = arduino.Arduino(conf , None)
     pooyesh_machine = copy_right.CopyRight(conf)
-    cycle_time_instance = cycle_time.CycleTime(conf)
+    cycle_time_instance = cycle_time.CycleTime(conf , 2000)
 
     try:
         conf.init_display()
 
         back_fround_color.background_color()
-        station_number.st_number(8, 'on')
+        station_number.st_number()
         error_state.error_code()
         power_supply_instance.power_supply()
-        status_value.rounded_rectangle('warning')
-        cycle_time_instance.cycle(1000)
-        status_value.Status_logo_message('Dosing Error! please enter a valid error')
+        status_value.rounded_rectangle()
+        cycle_time_instance.cycle()
+        status_value.Status_logo_message()
         feed_instance.feed_state()
         pooyesh_machine.pooyesh_machine_logo()
 
@@ -59,6 +59,5 @@ async def main():
         logging.error(f"Error : {e}")
         conf.module_die()
 
-# اجرای برنامه
 if __name__ == '__main__':
     asyncio.run(main())

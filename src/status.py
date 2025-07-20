@@ -13,16 +13,18 @@ class Status:
     # Initialize Text
     TEXT_CORDINATE = (30,135)
     TEXT_COLOR = '#f7f1e3'
-    def __init__(self , conf : config.Configuration):
+    def __init__(self , conf : config.Configuration , status , error_text):
         self.config = conf
-    def rounded_rectangle(self , status):
+        self.status = status
+        self.error_text = error_text
+    def rounded_rectangle(self):
         '''Create a rectangle in bottom half circle'''
-        if status == 'error':
+        if self.status == 'error':
             self.config.draw.rectangle(
                 Status.RECTANGLE_CORDINATE,
                 Status.ERROR_RECTANGLE_COLOR  
         )
-        elif status == 'warning':
+        elif self.status == 'warning':
             self.config.draw.rectangle(
                 Status.RECTANGLE_CORDINATE,
                 Status.WARNING_RECTANGLE_COLOR  
@@ -34,9 +36,9 @@ class Status:
     def wrap_text(text , line_lenght = 17):
         '''For Wrap a text for prevent our text placement out of lcd range'''
         return '\n'.join([text[i:i+line_lenght] for i in range(0,len(text) , line_lenght)])
-    def Status_logo_message(self ,error_text):
+    def Status_logo_message(self):
 
-        wrapped_text = self.wrap_text(error_text , line_lenght= 17 )
+        wrapped_text = self.wrap_text(self.error_text , line_lenght= 17 )
         error_font = self.config.big_bold_font
         self.config.draw.text(
             Status.TEXT_CORDINATE,

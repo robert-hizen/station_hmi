@@ -23,11 +23,12 @@ class CycleTime:
     # Rotate degree and final cordinate for image
     DEGREE = 59
     FINAL_CORDINATE = ( -70 , -60)
-    def __init__(self , conf : config.Configuration):
+    def __init__(self , conf : config.Configuration , cycle_time):
         self.config = conf
+        self.cycle_time = cycle_time
         dir = '/home/user-null/Documents/station_lcd/Font'
         self.font = ImageFont.truetype(f'{dir}/bold.otf')
-    def cycle(self , cycle_txt):
+    def cycle(self):
         temp_img = Image.new("RGBA" , CycleTime.TEMP_IMAGE_CORDINATE , CycleTime.BACKGROUND_COLOR )
         temp_draw = ImageDraw.Draw(temp_img)
 
@@ -45,7 +46,7 @@ class CycleTime:
         )
         temp_draw.text(
             CycleTime.TEXT_CORDINATE,
-            text=f'{cycle_txt}',
+            text=f'{self.cycle_time}',
             fill= CycleTime.TEXT_COLOR,
             font=self.font
         )
