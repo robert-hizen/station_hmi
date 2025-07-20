@@ -1,14 +1,14 @@
 import sys
 import time
-import threading
-import logging
 from PIL import Image
 sys.path.append('..')
 from config import config
 
-class Cams:
+class DosingWebCam:
     X_CORDINATE = 181
     Y_CORDINATE = 26
+    BLINKER_TIME = 0.3
+    TEMP_IMAGE_COLOR = (0,0,0,0)
 
     def __init__(self, connection_status, conf: config.Configuration):
         self.config = conf
@@ -18,14 +18,14 @@ class Cams:
         self.blink_state = False
 
         self.img_on = Image.open(f'{self.dir}/web_cams.jpg').convert("RGBA")
-        self.clear_img = Image.new("RGBA", self.img_on.size, (0, 0, 0, 0))
+        self.clear_img = Image.new("RGBA", self.img_on.size, DosingWebCam.TEMP_IMAGE_COLOR)
         self.current_image = self.clear_img.copy()
 
     def update(self):
+        '''Blink or non-Blink Icon with on/off Conditions'''
         now = time.time()
-        # print(f"[CAMS] status: {self.connection}, blink_state: {self.blink_state}")
         if self.connection == 'off':
-            if now - self.last_blink_time > 0.3:
+            if now - self.last_blink_time > DosingWebCam.BLINKER_TIME:
                 self.blink_state = not self.blink_state
                 self.last_blink_time = now
 

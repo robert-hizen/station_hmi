@@ -9,7 +9,7 @@ class Network:
     TEMP_IMAGE_COLOR = (0,0,0,0)
     def __init__(self, conf: config.Configuration, status=None):
         self.config = conf
-        self.status = status  # None یا 'best'
+        self.status = status
         self.dir = '/home/user-null/Documents/station_lcd/template/picture/network'
         self.last_blink_time = time.time()
         self.blink_state = False

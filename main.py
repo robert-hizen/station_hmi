@@ -28,7 +28,7 @@ async def main():
     error_state = error.Error('1234', conf)
     power_supply_instance = pw_supply.PowerSupply(5, conf)
     feed_instance = feed.Feed('off', conf)
-    web_cam_dosing = web_cams_dosing.Cams('off', conf)
+    web_cam_dosing = web_cams_dosing.DosingWebCam('off', conf)
     web_cam_holder = web_cams_holder.HolderWebCam('off', conf)           
     network_con = network.Network(conf, 'off')
     arduino_ctrl = arduino.Arduino(conf , None)
@@ -39,7 +39,7 @@ async def main():
         conf.init_display()
 
         back_fround_color.background_color()
-        station_number.st_number(10, 'off')
+        station_number.st_number(8, 'on')
         error_state.error_code()
         power_supply_instance.power_supply()
         status_value.rounded_rectangle('warning')

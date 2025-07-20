@@ -3,49 +3,52 @@ from PIL import Image , ImageFont , ImageDraw
 sys.path.append('..')
 from config import config
 class PowerSupply:
+    # Initialize temp image 
+    TEMP_IMAGE_CORDINATE = (130,130) 
+    BACKGROUND_COLOR = (0,0,0,0)
+    # Initial rounded rectangle variables
+    ROUNDED_RECTANGLE_CORDINATE = [(30,80),(70,120)]
+    ROUNDED_RADIUS = 30
+    ROUNDED_RECTANGLE_COLOR = '#aaa69d'
+
+    # Initial Pieslice indented cut variables
+    PIESLICE_CORDINATE = [(24 , 110) , (70,130)]
+    PIESLICE_COLOR = '#535C68'
+
+    # Initialize Text
+    TEXT_CORDINATE = (42,96)
+    TEXT_COLOR = '#f5f6fa'
+
+    #Rotate  degree and final cordinate for image
+    DEGREE = 80
+    FINAL_CORDINATE = (-96 , 2)
     def __init__(self,voltage ,conf : config.Configuration):
         self.voltage = voltage
         self.config = conf
         font_directory = '/home/user-null/Documents/station_lcd/Font/'
         self.voltage_font = ImageFont.truetype(font_directory + 'bold.otf' , size=12)
     def power_supply(self):
-        # power_image = Image.open('template/picture/Powers/power-supply.jpg')
-        # self.config.image.paste(power_image , (55,60))
-        # seprator_line = Image.open('template/picture/vertical_line/line.jpg') 
-        # self.config.image.paste(seprator_line , (113,63))
-        temp_img = Image.new("RGBA" , (130  ,130) , (0,0,0,0))
+        temp_img = Image.new("RGBA" , PowerSupply.TEMP_IMAGE_CORDINATE , PowerSupply.BACKGROUND_COLOR)
         temp_draw = ImageDraw.Draw(temp_img)
 
         temp_draw.rounded_rectangle(
-            [
-                (30 , 80),
-                (70 , 120)
-            ],
-            radius=30,
-            fill= '#aaa69d',
-            # outline='#aaa69d'
+            PowerSupply.ROUNDED_RECTANGLE_CORDINATE,
+            PowerSupply.ROUNDED_RADIUS,
+            PowerSupply.ROUNDED_RECTANGLE_COLOR,
         )
         temp_draw.pieslice(
-            [
-                (24,110),
-                (70 , 130)
-            ],
+            PowerSupply.PIESLICE_CORDINATE,
             start=180,
             end=360,
-            fill= '#535c68'
+            fill= PowerSupply.PIESLICE_COLOR
         )
         temp_draw.text(
-            (42,96),
+            PowerSupply.TEXT_CORDINATE,
             text=f'{self.voltage}V',
-            fill='#f7f1e3',
+            fill= PowerSupply.TEXT_COLOR,
             font= self.voltage_font,
         )
-        rotated_img = temp_img.rotate(80,expand=True).convert("RGBA")
+        rotated_img = temp_img.rotate(PowerSupply.DEGREE,expand=True).convert("RGBA")
 
-        # canvas_width = self.config.image.width
-        # rotated_width = rotated_img.width
-        # x_center = (canvas_width - rotated_width) // 2
-        y_top = 2
-
-        self.config.image.paste(rotated_img , (-96,y_top) , rotated_img)
+        self.config.image.paste(rotated_img , PowerSupply.FINAL_CORDINATE , rotated_img)
             
