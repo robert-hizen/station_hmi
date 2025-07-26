@@ -8,6 +8,8 @@ class StationNumber:
     ONE_DIGIT_TEXT_CORDINATE = (85,25)
     TEXT_COLOR = '#ffffff'
     TWO_DIGIT_TEXT_CORDINATE = (67,30)
+    TWENTY_CORDINATE = (65,35)
+
 
     # Power image handler
     POWER_IMAGE_RESIZE = (20,20)
@@ -19,6 +21,7 @@ class StationNumber:
         dir = '/home/user-null/Documents/station_lcd/Font'
         self.font_one_digit = ImageFont.truetype(f'{dir}/bold.otf' , size=115)
         self.font_two_digit = ImageFont.truetype(f'{dir}/bold.otf' , size=100)
+        self.font_twenty = ImageFont.truetype(f'{dir}/bold.otf' , size=95)
     def st_number(self):
         # i didnt use loops for time complexity
         if 1<= self.station_number <= 9:
@@ -28,11 +31,18 @@ class StationNumber:
                 font=self.font_one_digit,
                 fill= StationNumber.TEXT_COLOR,
             )
-        elif 9 < self.station_number <= 20:
+        elif 9 < self.station_number < 20:
             self.config.draw.text(
                 StationNumber.TWO_DIGIT_TEXT_CORDINATE,
                 text=f'{self.station_number}',
                 font=self.font_two_digit,
+                fill=StationNumber.TEXT_COLOR
+            )
+        elif self.station_number == 20:
+            self.config.draw.text(
+                StationNumber.TWENTY_CORDINATE,
+                text=f'{self.station_number}',
+                font=self.font_twenty,
                 fill=StationNumber.TEXT_COLOR
             )
         try:

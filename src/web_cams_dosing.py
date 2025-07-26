@@ -5,8 +5,8 @@ sys.path.append('..')
 from config import config
 
 class DosingWebCam:
-    X_CORDINATE = 181
-    Y_CORDINATE = 26
+    X_CORDINATE = 183
+    Y_CORDINATE = 30
     BLINKER_TIME = 0.3
     TEMP_IMAGE_COLOR = (0,0,0,0)
 
@@ -17,7 +17,7 @@ class DosingWebCam:
         self.last_blink_time = time.time()
         self.blink_state = False
 
-        self.img_on = Image.open(f'{self.dir}/web_cams.jpg').convert("RGBA")
+        self.img_on = Image.open(f'{self.dir}/web_cams1.jpg').convert("RGBA")
         self.clear_img = Image.new("RGBA", self.img_on.size, DosingWebCam.TEMP_IMAGE_COLOR)
         self.current_image = self.clear_img.copy()
 

@@ -23,7 +23,7 @@ async def render_loop(conf,holder_web_cam ,  web_cam, network, arduino, static_b
 async def main():
     conf = config.Configuration()
     back_fround_color = bg.Bg(conf)
-    station_number = st_number.StationNumber(conf , 12 , 'on')
+    station_number = st_number.StationNumber(conf , 20 , 'on')
     status_value = status.Status(conf , 'error' , 'Dosing Error! please enter a valid error' )
     error_state = error.Error('1234', conf)
     power_supply_instance = pw_supply.PowerSupply(5, conf)
